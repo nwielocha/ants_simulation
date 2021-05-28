@@ -7,12 +7,17 @@
 */
 
 #include <iostream>
+#include <unistd.h>
+
+constexpr int microsecond {1000000};
 
 // Mrowka sklada sie z ciala, oraz ma swoje wspolrzedne na mapie 
 struct TMrowka {
     char cialo = '.';
     int x, y;
 };
+
+void clearScreen();
 
 // feromon
 
@@ -58,6 +63,16 @@ int main() {
         std::cout << std::endl;
     }
     
-    
+    usleep(2 * microsecond);    
+    clearScreen();
+
     return 0;
+}
+
+void clearScreen() {
+    #ifdef WINDOWS
+        std::system("cls");
+    #else
+        std::system("clear");
+    #endif
 }
