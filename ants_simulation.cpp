@@ -11,7 +11,6 @@
 
 #include <iostream>
 #include <unistd.h>
-#include <time.h>
 
 constexpr int microsecond {1000000};
 
@@ -68,18 +67,10 @@ int main() {
     usleep(2 * microsecond);    
     clearScreen();
 
-    // Rozpoczecie symulacji
-    for (int i = 0; i < 25; i++) {
-        for (int j = 0; j < 50; j++) {
-            std::cout << mapa[i][j] << " ";
-        }
-        std::cout << std::endl;
-    }
-
-
-    // Mrowki wychodza z gniazda w poszukiwaniu jedzenia,
     TMrowka mrowka[il_mrowek];
 
+
+    // Przypisanie miejsc startwoych dla mrowek
     for (int i = 0; i < il_mrowek; i++) {
         mrowka[i].x = 9 + rand() % 5;
         int temp = mrowka[i].x;
@@ -117,27 +108,51 @@ int main() {
         }
     }
 
-    for ( int i = 0; i < il_mrowek; i++ ) {
-        mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
-    }
-    
-    usleep(2 * microsecond);    
-    clearScreen();
-
-    for (int i = 0; i < 25; i++) {
-        for (int j = 0; j < 50; j++) {
-            std::cout << mapa[i][j] << " ";
+    // Rozpoczecie symulacji
+    while (true) {
+        
+        for (int i = 0; i < 25; i++) {
+            mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
+            for (int j = 0; j < 50; j++) {
+                std::cout << mapa[i][j] << " ";
+            }
+            std::cout << std::endl;
         }
-        std::cout << std::endl;
+
+        /*
+        for (int i = 0; i < il_mrowek; i++) {
+            mapa[mrowka[i].x][mrowka[i].y] = ' ';
+        }
+        */
+
+         
+        // Poruszanie sie
+        for (int i = 0; i < il_mrowek; i++) {
+            mrowka[i].x = mrowka[i].x + (-1) + rand() % 3;
+            mrowka[i].y = mrowka[i].y + (-1) + rand() % 3;
+        }
+        
+        // Gdy dojda do sciany lub gniazda (bez jedzenia)
+        for (int i = 0; i < il_mrowek; i++) {
+            if (mrowka[i].x == 0) {
+                mrowka[i].x = 1;
+            }
+            if (mrowka[i].x == 49) {
+                mrowka[i].x = 48;
+            }
+            if (mrowka[i].y == 0) {
+                mrowka[i].y = 1;
+            }
+            if (mrowka[i].y == 49) {
+                mrowka[i].y == 48;
+            }
+        }
+
+        clearScreen();
+        
+        
+
     }
-
-    // gdy dojda do sciany lub gniazda ( bez jedzenia )
-    for (int i = 0; i < il_mrowek; i++) {
-        mrowka[i].x = mrowka[i].x + rand()
-    }
-    // zawracaja i ida w druga strone 
-
-
 
     return 0;
 }
