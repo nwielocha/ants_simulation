@@ -5,9 +5,13 @@
     / ____ \ | | | || |_ \__ \  ____) || || | | | | || |_| || || (_| || |_ | || (_) || | | |
    /_/    \_\|_| |_| \__||___/ |_____/ |_||_| |_| |_| \__,_||_| \__,_| \__||_| \___/ |_| |_|
 */
+// Projekt - Jezyki Programowania
+// Nicolas Wielocha
+// Uniwersytet Gdanski, WMFiI
 
 #include <iostream>
 #include <unistd.h>
+#include <time.h>
 
 constexpr int microsecond {1000000};
 
@@ -16,17 +20,14 @@ struct TMrowka {
     char cialo = '.';
     int x, y;
 };
-
+//***********************************************************************************
 void clearScreen();
 
 // feromon
 
-// Losowe poruszanie sie w lewo, prawo i prosto,
-// gdy mrowka natrafi na sciane idzie w inna strone 
-// (lub przechodzi przez nia)
-
 // jedzenie
 
+//***********************************************************************************
 int main() {
     int il_mrowek;
 
@@ -56,6 +57,7 @@ int main() {
     mapa[11][24] = 'x'; mapa[11][25] = 'x'; mapa[11][26] = 'x';
     mapa[12][24] = 'x'; mapa[12][25] = 'x'; mapa[12][26] = 'x';
 
+    // Wyswietlenie mapy
     for (int i = 0; i < 25; i++) {
         for (int j = 0; j < 50; j++) {
             std::cout << mapa[i][j] << " ";
@@ -66,9 +68,80 @@ int main() {
     usleep(2 * microsecond);    
     clearScreen();
 
+    // Rozpoczecie symulacji
+    for (int i = 0; i < 25; i++) {
+        for (int j = 0; j < 50; j++) {
+            std::cout << mapa[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+
+    // Mrowki wychodza z gniazda w poszukiwaniu jedzenia,
+    TMrowka mrowka[il_mrowek];
+
+    for (int i = 0; i < il_mrowek; i++) {
+        mrowka[i].x = 9 + rand() % 5;
+        int temp = mrowka[i].x;
+
+        switch (temp) {
+            case 9:
+                mrowka[i].y = 23 + rand() % 5;
+                break;
+            case 10:
+                if (rand() % 2) {
+                    mrowka[i].y = 23;
+                } else {
+                    mrowka[i].y = 27;
+                }
+                break;
+            case 11:
+                if (rand() % 2) {
+                    mrowka[i].y = 23;
+                } else {
+                    mrowka[i].y = 27;
+                }
+                break;
+            case 12:
+                if (rand() % 2) {
+                    mrowka[i].y = 23;
+                } else {
+                    mrowka[i].y = 27;
+                }
+                break;
+            case 13: 
+                mrowka[i].y = 23 + rand() % 5;
+                break;
+            default:
+                std::cout << "Blad przy ustalaniu pozycji poczatkowej mrowek." << std::endl;
+        }
+    }
+
+    for ( int i = 0; i < il_mrowek; i++ ) {
+        mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
+    }
+    
+    usleep(2 * microsecond);    
+    clearScreen();
+
+    for (int i = 0; i < 25; i++) {
+        for (int j = 0; j < 50; j++) {
+            std::cout << mapa[i][j] << " ";
+        }
+        std::cout << std::endl;
+    }
+
+    // gdy dojda do sciany lub gniazda ( bez jedzenia )
+    for (int i = 0; i < il_mrowek; i++) {
+        mrowka[i].x = mrowka[i].x + rand()
+    }
+    // zawracaja i ida w druga strone 
+
+
+
     return 0;
 }
-
+//*********************************************************************************
 void clearScreen() {
     #ifdef WINDOWS
         std::system("cls");
