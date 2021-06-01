@@ -14,11 +14,11 @@
 
 constexpr int microsecond {1000000};
 
-// Mrowka sklada sie z ciala, oraz ma swoje wspolrzedne na mapie 
 struct TMrowka {
     char cialo = '.';
     int x, y;
 };
+
 //***********************************************************************************
 void clearScreen();
 
@@ -113,19 +113,17 @@ int main() {
         
         for (int i = 0; i < 25; i++) {
             mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
+
             for (int j = 0; j < 50; j++) {
                 std::cout << mapa[i][j] << " ";
             }
             std::cout << std::endl;
         }
 
-        /*
         for (int i = 0; i < il_mrowek; i++) {
             mapa[mrowka[i].x][mrowka[i].y] = ' ';
         }
-        */
 
-         
         // Poruszanie sie
         for (int i = 0; i < il_mrowek; i++) {
             mrowka[i].x = mrowka[i].x + (-1) + rand() % 3;
@@ -144,7 +142,7 @@ int main() {
                 mrowka[i].y = 1;
             }
             if (mrowka[i].y == 49) {
-                mrowka[i].y == 48;
+                mrowka[i].y = 48;
             }
         }
 
