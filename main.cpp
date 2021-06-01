@@ -69,7 +69,6 @@ int main() {
 
     TMrowka mrowka[il_mrowek];
 
-
     // Przypisanie miejsc startwoych dla mrowek
     for (int i = 0; i < il_mrowek; i++) {
         mrowka[i].x = 9 + rand() % 5;
@@ -105,6 +104,7 @@ int main() {
                 break;
             default:
                 std::cout << "Blad przy ustalaniu pozycji poczatkowej mrowek." << std::endl;
+                break;
         }
     }
 
@@ -112,11 +112,14 @@ int main() {
     while (true) {
         
         for (int i = 0; i < 25; i++) {
-            mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
+            for (int k = 0; k < il_mrowek; k++) {
+                mapa[mrowka[i].x][mrowka[i].y] = mrowka[i].cialo;
+            }
 
             for (int j = 0; j < 50; j++) {
                 std::cout << mapa[i][j] << " ";
             }
+
             std::cout << std::endl;
         }
 
