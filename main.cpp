@@ -135,28 +135,52 @@ int main() {
             mrowka[i].x = mrowka[i].x + (-1) + rand() % 3;
             mrowka[i].y = mrowka[i].y + (-1) + rand() % 3;
         }
-        
+
         // Gdy dojda do sciany lub gniazda (bez jedzenia)
         for (int i = 0; i < il_mrowek; i++) {
-            if (mrowka[i].x == 0) {
-                mrowka[i].x = 1;
+            for (int k = 9; k < 14; k++) {
+                if (mrowka[i].x == k && mrowka[i].y == 23) {
+                    mrowka[i].x = k;
+                    mrowka[i].y = 22;
+                }
+                if (mrowka[i].x == k && mrowka[i].y == 27) {
+                    mrowka[i].x = k;
+                    mrowka[i].y = 28;
+                }
+                if (mrowka[i].x == 9 && mrowka[i].y == k + 14) {
+                    mrowka[i].x = 8;
+                    mrowka[i].y = k + 14;
+                }
+                if (mrowka[i].x == 13 && mrowka[i].y == k + 14) {
+                    mrowka[i].x = 14;
+                    mrowka[i].x = k + 14;
+                }
+                
             }
-            if (mrowka[i].x == 49) {
-                mrowka[i].x = 48;
-            }
-            if (mrowka[i].y == 0) {
-                mrowka[i].y = 1;
-            }
-            if (mrowka[i].y == 49) {
-                mrowka[i].y = 48;
+
+            for (int j = 1; j < 48; j++) {
+                if (mrowka[i].x == j && mrowka[i].y == 1) {
+                    mrowka[i].x = j;
+                    mrowka[i].y = 2;
+                }
+                if (mrowka[i].x == j && mrowka[i].y == 48) {
+                    mrowka[i].x = j;
+                    mrowka[i].y = 47;
+                }
+                if (mrowka[i].x == 1 && mrowka[i].y == j) {
+                    mrowka[i].x = 2;
+                    mrowka[i].y = j;
+                }
+                if (mrowka[i].x == 48 && mrowka[i].y == j) {
+                    mrowka[i].x = 47;
+                    mrowka[i].y = j;
+                }
             }
         }
 
-        usleep(0.5 * microsecond);
+        usleep(0.25 * microsecond);
         clearScreen();
         
-        
-
     }
 
     return 0;
