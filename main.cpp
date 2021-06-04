@@ -110,25 +110,19 @@ int main() {
 
     // Rozpoczecie symulacji
     while (true) {
-        std::cout << "stage 0" << std::endl;
         
         for (int i = 0; i < 25; i++) {
-            for (int k = 0; k < il_mrowek; k++) {
+            for (int k = 0; k < il_mrowek; k++) 
                 mapa[mrowka[k].x][mrowka[k].y] = mrowka[k].cialo;
-            }
 
-            for (int j = 0; j < 50; j++) {
+            for (int j = 0; j < 50; j++) 
                 std::cout << mapa[i][j] << " ";
-            }
 
             std::cout << std::endl;
         }
 
-        std::cout << "stage 1" << std::endl;
-
-        for (int i = 0; i < il_mrowek; i++) {
+        for (int i = 0; i < il_mrowek; i++) 
             mapa[mrowka[i].x][mrowka[i].y] = ' ';
-        }
 
         // Poruszanie sie
         for (int i = 0; i < il_mrowek; i++) {
