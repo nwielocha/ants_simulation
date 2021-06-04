@@ -72,9 +72,9 @@ int main() {
     // Przypisanie miejsc startwoych dla mrowek
     for (int i = 0; i < il_mrowek; i++) {
         mrowka[i].x = 9 + rand() % 5;
-        int temp = mrowka[i].x;
+        int pozycja_x = mrowka[i].x;
 
-        switch (temp) {
+        switch (pozycja_x) {
             case 9:
                 mrowka[i].y = 23 + rand() % 5;
                 break;
@@ -210,49 +210,49 @@ int main() {
             }
             
         }
-/*
-        // Gdy dojda do sciany lub gniazda (bez jedzenia)
-        for (int i = 0; i < il_mrowek; i++) {
-            for (int k = 9; k < 14; k++) {
-                if (mrowka[i].x == k && mrowka[i].y == 23) {
-                    mrowka[i].x = k;
-                    mrowka[i].y = 22;
-                }
-                if (mrowka[i].x == k && mrowka[i].y == 27) {
-                    mrowka[i].x = k;
-                    mrowka[i].y = 28;
-                }
-                if (mrowka[i].x == 9 && mrowka[i].y == k + 14) {
-                    mrowka[i].x = 8;
-                    mrowka[i].y = k + 14;
-                }
-                if (mrowka[i].x == 13 && mrowka[i].y == k + 14) {
-                    mrowka[i].x = 14;
-                    mrowka[i].x = k + 14;
-                }
-                
-            }
 
-            for (int j = 1; j < 48; j++) {
-                if (mrowka[i].x == j && mrowka[i].y == 1) {
-                    mrowka[i].x = j;
-                    mrowka[i].y = 2;
-                }
-                if (mrowka[i].x == j && mrowka[i].y == 48) {
-                    mrowka[i].x = j;
-                    mrowka[i].y = 47;
-                }
-                if (mrowka[i].x == 1 && mrowka[i].y == j) {
-                    mrowka[i].x = 2;
-                    mrowka[i].y = j;
-                }
-                if (mrowka[i].x == 48 && mrowka[i].y == j) {
-                    mrowka[i].x = 47;
-                    mrowka[i].y = j;
-                }
+        // Mrowka nie wchodzi na sciany
+        for (int i = 0; i < il_mrowek; i++) {
+            if (mrowka[i].x == 0 && mrowka[i].y == 0) {
+                mrowka[i].x = 1;
+                mrowka[i].y = 1;
+            }
+            else if (mrowka[i].x == 24 && mrowka[i].y == 0) {
+                mrowka[i].x = 23;
+                mrowka[i].y = 1;
+            }
+            else if (mrowka[i].x == 0 && mrowka[i].y == 49) {
+                mrowka[i].x = 1;
+                mrowka[i].y = 48;
+            }
+            else if (mrowka[i].x == 24 && mrowka[i].y == 49) {
+                mrowka[i].x = 23;
+                mrowka[i].y = 48;
+            }
+            else {
+                for (int j = 1; j < 24; j++) {
+                    for (int k = 1; k < 49; k++) {
+                        if (mrowka[i].x == j && mrowka[i].y == 0) {
+                            mrowka[i].x = j;
+                            mrowka[i].y = 1;
+                        }
+                        else if (mrowka[i].x == j && mrowka[i].y == 49) {
+                            mrowka[i].x = j;
+                            mrowka[i].y = 48;
+                        }
+                        else if (mrowka[i].x == 0 && mrowka[i].y == k) {
+                            mrowka[i].x = 1;
+                            mrowka[i].y = k;
+                        }
+                        else if (mrowka[i].x == 24 && mrowka[i].y == k) {
+                            mrowka[i].x = 23;
+                            mrowka[i].y = k;
+                        }
+                    }
+                } 
             }
         }
-*/
+
         usleep(0.25 * microsecond);
         clearScreen();
         
