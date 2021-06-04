@@ -135,7 +135,82 @@ int main() {
             mrowka[i].x = mrowka[i].x + (-1) + rand() % 3;
             mrowka[i].y = mrowka[i].y + (-1) + rand() % 3;
         }
-
+        
+        // Mrowka nie wchodzi do gniazda bez jedzenia
+        for (int i = 0; i < il_mrowek; i++) {
+            if (rand() % 2) {
+                if ( mrowka[i].x == 10 && mrowka[i].y == 24) {
+                    mrowka[i].x = 10;
+                    mrowka[i].x = 23;
+                }
+                else if (mrowka[i].x == 10 && mrowka[i].y == 25) {
+                    mrowka[i].x = 9;
+                    mrowka[i].y = 25;
+                }
+                else if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
+                    mrowka[i].x = 9;
+                    mrowka[i].y = 26;
+                }
+                else if (mrowka[i].x == 11 && mrowka[i].y == 24) {
+                    mrowka[i].x = 11;
+                    mrowka[i].y = 23;
+                }
+                else if (mrowka[i].x == 11 && mrowka[i].y == 26) {
+                    mrowka[i].x = 11;
+                    mrowka[i].y = 27;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
+                    mrowka[i].x = 12;
+                    mrowka[i].y = 23;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
+                    mrowka[i].x = 13;
+                    mrowka[i].y = 25;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
+                    mrowka[i].x = 12;
+                    mrowka[i].y = 27;
+                }
+                
+            } 
+            else {
+                if ( mrowka[i].x == 10 && mrowka[i].y == 24) {
+                    mrowka[i].x = 9;
+                    mrowka[i].x = 24;
+                }
+                else if (mrowka[i].x == 10 && mrowka[i].y == 25) {
+                    mrowka[i].x = 9;
+                    mrowka[i].y = 25;
+                }
+                else if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
+                    mrowka[i].x = 10;
+                    mrowka[i].y = 27;
+                }
+                else if (mrowka[i].x == 11 && mrowka[i].y == 24) {
+                    mrowka[i].x = 11;
+                    mrowka[i].y = 23;
+                }
+                else if (mrowka[i].x == 11 && mrowka[i].y == 26) {
+                    mrowka[i].x = 11;
+                    mrowka[i].y = 27;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
+                    mrowka[i].x = 13;
+                    mrowka[i].y = 24;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
+                    mrowka[i].x = 13;
+                    mrowka[i].y = 25;
+                }
+                else if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
+                    mrowka[i].x = 13;
+                    mrowka[i].y = 26;
+                }
+                
+            }
+            
+        }
+/*
         // Gdy dojda do sciany lub gniazda (bez jedzenia)
         for (int i = 0; i < il_mrowek; i++) {
             for (int k = 9; k < 14; k++) {
@@ -177,7 +252,7 @@ int main() {
                 }
             }
         }
-
+*/
         usleep(0.25 * microsecond);
         clearScreen();
         
