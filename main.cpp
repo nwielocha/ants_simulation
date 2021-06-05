@@ -13,9 +13,15 @@
 #include <unistd.h>
 
 constexpr int microsecond {1000000};
+const int il_pozywienia {84};
 
 struct TMrowka {
     char cialo = '.';
+    int x, y;
+};
+
+struct TPozywienie {
+    char cialo = 'o';
     int x, y;
 };
 
@@ -28,11 +34,14 @@ void clearScreen();
 
 //***********************************************************************************
 int main() {
+    TPozywienie food[il_pozywienia];
     int il_mrowek;
 
     std::cout << "\t\t\t\t     Podaj ilosc mrowek: ";
     std::cin >> il_mrowek;
     std::cout << "\t\t\t\t\tANTS SIMULATION" << std::endl;
+
+    TMrowka mrowka[il_mrowek];
 
     // Mapa
     char mapa[25][50];
@@ -56,6 +65,22 @@ int main() {
     mapa[11][24] = 'x'; mapa[11][25] = 'x'; mapa[11][26] = 'x';
     mapa[12][24] = 'x'; mapa[12][25] = 'x'; mapa[12][26] = 'x';
 
+    // Pozywienie
+    {
+        int k = 7;
+        int j = 7;
+        for (int i = 0; i < il_pozywienia; i++) {
+            for (int wiersz = 1; wiersz < j; wiersz++) {
+                for (int kolumna = 1; kolumna < k; kolumna++) {
+                    mapa[wiersz][kolumna] = food[i].cialo;
+                }
+                k--;
+            }
+            j--;
+        }
+        
+    }
+
     // Wyswietlenie mapy
     for (int i = 0; i < 25; i++) {
         for (int j = 0; j < 50; j++) {
@@ -67,7 +92,6 @@ int main() {
     usleep(2 * microsecond);    
     clearScreen();
 
-    TMrowka mrowka[il_mrowek];
 
     // Przypisanie miejsc startwoych dla mrowek
     for (int i = 0; i < il_mrowek; i++) {
