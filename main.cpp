@@ -135,33 +135,33 @@ int main() {
             if (rand() % 2) {
                 if ( mrowka[i].x == 10 && mrowka[i].y == 24) {
                     mrowka[i].x = 10;
-                    mrowka[i].x = 23;
+                    mrowka[i].y = 23;
                 }
-                else if (mrowka[i].x == 10 && mrowka[i].y == 25) {
+                if (mrowka[i].x == 10 && mrowka[i].y == 25) {
                     mrowka[i].x = 9;
                     mrowka[i].y = 25;
                 }
-                else if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
+                if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
                     mrowka[i].x = 9;
                     mrowka[i].y = 26;
                 }
-                else if (mrowka[i].x == 11 && mrowka[i].y == 24) {
+                if (mrowka[i].x == 11 && mrowka[i].y == 24) {
                     mrowka[i].x = 11;
                     mrowka[i].y = 23;
                 }
-                else if (mrowka[i].x == 11 && mrowka[i].y == 26) {
+                if (mrowka[i].x == 11 && mrowka[i].y == 26) {
                     mrowka[i].x = 11;
                     mrowka[i].y = 27;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
                     mrowka[i].x = 12;
                     mrowka[i].y = 23;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
                     mrowka[i].x = 13;
                     mrowka[i].y = 25;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
                     mrowka[i].x = 12;
                     mrowka[i].y = 27;
                 }
@@ -170,33 +170,33 @@ int main() {
             else {
                 if ( mrowka[i].x == 10 && mrowka[i].y == 24) {
                     mrowka[i].x = 9;
-                    mrowka[i].x = 24;
+                    mrowka[i].y = 24;
                 }
-                else if (mrowka[i].x == 10 && mrowka[i].y == 25) {
+                if (mrowka[i].x == 10 && mrowka[i].y == 25) {
                     mrowka[i].x = 9;
                     mrowka[i].y = 25;
                 }
-                else if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
+                if ( mrowka[i].x == 10 && mrowka[i].y == 26) {
                     mrowka[i].x = 10;
                     mrowka[i].y = 27;
                 }
-                else if (mrowka[i].x == 11 && mrowka[i].y == 24) {
+                if (mrowka[i].x == 11 && mrowka[i].y == 24) {
                     mrowka[i].x = 11;
                     mrowka[i].y = 23;
                 }
-                else if (mrowka[i].x == 11 && mrowka[i].y == 26) {
+                if (mrowka[i].x == 11 && mrowka[i].y == 26) {
                     mrowka[i].x = 11;
                     mrowka[i].y = 27;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 24) {
                     mrowka[i].x = 13;
                     mrowka[i].y = 24;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 25 ) {
                     mrowka[i].x = 13;
                     mrowka[i].y = 25;
                 }
-                else if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
+                if ( mrowka[i].x == 12 && mrowka[i].y == 26) {
                     mrowka[i].x = 13;
                     mrowka[i].y = 26;
                 }
@@ -211,15 +211,15 @@ int main() {
                 mrowka[i].x = 1;
                 mrowka[i].y = 1;
             }
-            else if (mrowka[i].x == 24 && mrowka[i].y == 0) {
+            if (mrowka[i].x == 24 && mrowka[i].y == 0) {
                 mrowka[i].x = 23;
                 mrowka[i].y = 1;
             }
-            else if (mrowka[i].x == 0 && mrowka[i].y == 49) {
+            if (mrowka[i].x == 0 && mrowka[i].y == 49) {
                 mrowka[i].x = 1;
                 mrowka[i].y = 48;
             }
-            else if (mrowka[i].x == 24 && mrowka[i].y == 49) {
+            if (mrowka[i].x == 24 && mrowka[i].y == 49) {
                 mrowka[i].x = 23;
                 mrowka[i].y = 48;
             }
@@ -230,15 +230,15 @@ int main() {
                             mrowka[i].x = j;
                             mrowka[i].y = 1;
                         }
-                        else if (mrowka[i].x == j && mrowka[i].y == 49) {
+                        if (mrowka[i].x == j && mrowka[i].y == 49) {
                             mrowka[i].x = j;
                             mrowka[i].y = 48;
                         }
-                        else if (mrowka[i].x == 0 && mrowka[i].y == k) {
+                        if (mrowka[i].x == 0 && mrowka[i].y == k) {
                             mrowka[i].x = 1;
                             mrowka[i].y = k;
                         }
-                        else if (mrowka[i].x == 24 && mrowka[i].y == k) {
+                        if (mrowka[i].x == 24 && mrowka[i].y == k) {
                             mrowka[i].x = 23;
                             mrowka[i].y = k;
                         }
