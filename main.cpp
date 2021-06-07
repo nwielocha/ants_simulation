@@ -13,7 +13,6 @@
 #include <unistd.h>
 
 constexpr int microsecond {1000000};
-const int il_pozywienia {84};
 
 struct TMrowka {
     char cialo = '.';
@@ -34,7 +33,9 @@ void clearScreen();
 
 //***********************************************************************************
 int main() {
+    const int il_pozywienia {84};
     TPozywienie food[il_pozywienia];
+
     int il_mrowek;
 
     std::cout << "\t\t\t\t     Podaj ilosc mrowek: ";
@@ -190,7 +191,6 @@ int main() {
                     mrowka[i].x = 12;
                     mrowka[i].y = 27;
                 }
-                
             } 
             else {
                 if ( mrowka[i].x == 10 && mrowka[i].y == 24) {
@@ -225,9 +225,7 @@ int main() {
                     mrowka[i].x = 13;
                     mrowka[i].y = 26;
                 }
-                
             }
-            
         }
 
         // Mrowka nie wchodzi na sciany
