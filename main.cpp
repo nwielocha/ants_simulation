@@ -12,27 +12,44 @@
 #include <iostream>
 #include <unistd.h>
 
+#define RESET   "\033[0m"
+#define RED     "\033[1;31m"
+#define YELLOW  "\033[33m" 
+
 constexpr int microsecond {1000000};
 
 struct TMrowka {
     char cialo = '.';
     int x, y;
+    bool powrot; // 0 - nie nosi jedzenia, 1 - nosi jedzenie
+};
+
+struct TJedzenie{
+    char cialo = 'o';
+    int x, y;
+    bool powrot; // 0 - nie zabrane, 1 - zabrane przez mrowke
+};
+
+struct TFeromon {
+    int x, y;
+    bool powrot; // 0 - brak jedzenia, 1 - posiada jedzenie
 };
 
 //*****************************************************************************
 void clearScreen();
-
-// feromon
+void zostawFeromon(TMrowka *, int);
 
 //*****************************************************************************
 int main() {
     int il_mrowek;
+    const int il_jedzenia {144};
 
     std::cout << "\t\t\t\t     Podaj ilosc mrowek: ";
     std::cin >> il_mrowek;
-    std::cout << "\t\t\t\t\tANTS SIMULATION" << std::endl;
+    std::cout << RED << "\t\t\t\t\tANTS SIMULATION" << RESET << std::endl;
 
     TMrowka mrowka[il_mrowek];
+    TJedzenie jedzenie[il_jedzenia];
 
     // Mapa
     char mapa[25][50];
@@ -57,21 +74,31 @@ int main() {
     mapa[12][24] = 'x'; mapa[12][25] = 'x'; mapa[12][26] = 'x';
 
     // Pozywienie
-    for (int i = 1; i < 7; i++) 
-        for (int j = 1; j < 7; j++) 
-            mapa[i][j] = 'o';
-            
-    for (int i = 18; i < 24; i++) 
-        for (int j = 1; j < 7; j++) 
-            mapa[i][j] = 'o';
-
-    for (int i = 1; i < 7; i++) 
-        for (int j = 43; j < 49; j++) 
-            mapa[i][j] = 'o';
-
-    for (int i = 18; i < 24; i++) 
-        for (int j = 43; j < 49; j++) 
-            mapa[i][j] = 'o';
+    int k = 0;
+    for (int i = 1; i < 7; i++) { 
+        for (int j = 1; j < 7; j++) {
+            mapa[i][j] = jedzenie[k].cialo;
+            k++;
+        }
+    } 
+    for (int i = 18; i < 24; i++) {
+        for (int j = 1; j < 7; j++) { 
+            mapa[i][j] = jedzenie[k].cialo;
+            k++;
+        }
+    }
+    for (int i = 1; i < 7; i++) {
+        for (int j = 43; j < 49; j++) {
+            mapa[i][j] = jedzenie[k].cialo;
+            k++;
+        }
+    }
+    for (int i = 18; i < 24; i++) {
+        for (int j = 43; j < 49; j++) {
+            mapa[i][j] = jedzenie[k].cialo;
+            k++;
+        }
+    }
 
     // Wyswietlenie mapy
     for (int i = 0; i < 25; i++) {
@@ -93,30 +120,38 @@ int main() {
         switch (pozycja_x) {
             case 9:
                 mrowka[i].y = 23 + rand() % 5;
+                zostawFeromon(mrowka, il_mrowek);
                 break;
             case 10:
                 if (rand() % 2) {
                     mrowka[i].y = 23;
+                    zostawFeromon(mrowka, il_mrowek);
                 } else {
                     mrowka[i].y = 27;
+                    zostawFeromon(mrowka, il_mrowek);
                 }
                 break;
             case 11:
                 if (rand() % 2) {
                     mrowka[i].y = 23;
+                    zostawFeromon(mrowka, il_mrowek);                   
                 } else {
                     mrowka[i].y = 27;
+                    zostawFeromon(mrowka, il_mrowek);
                 }
                 break;
             case 12:
                 if (rand() % 2) {
                     mrowka[i].y = 23;
+                    zostawFeromon(mrowka, il_mrowek);
                 } else {
                     mrowka[i].y = 27;
+                    zostawFeromon(mrowka, il_mrowek);
                 }
                 break;
             case 13: 
                 mrowka[i].y = 23 + rand() % 5;
+                zostawFeromon(mrowka, il_mrowek);
                 break;
             default:
                 std::cout << "Blad przy ustalaniu pozycji poczatkowej mrowek.";
@@ -146,6 +181,7 @@ int main() {
         for (int i = 0; i < il_mrowek; i++) {
             mrowka[i].x = mrowka[i].x + (-1) + rand() % 3;
             mrowka[i].y = mrowka[i].y + (-1) + rand() % 3;
+            zostawFeromon(mrowka, il_mrowek);
         }
         
         // Mrowka nie wchodzi do gniazda bez jedzenia
@@ -277,4 +313,14 @@ void clearScreen() {
     #else
         std::system("clear");
     #endif
+}
+
+void zostawFeromon(TMrowka *mrowka, int num) {
+    for (static int i = 0; i < num; i++) {
+        TFeromon feromon[i]; 
+        feromon[i].powrot = false;
+        feromon[i].x = mrowka[i].x;
+        feromon[i].y = mrowka[i].y;
+    }
+
 }
